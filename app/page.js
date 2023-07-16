@@ -2,12 +2,41 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Section from '../components/Section';
-import AddButton from '@/components/AddButton';
 import './globals.css';
+import Info from '../info.json';
 
-const sectionMock = [{"title": "PROFILE", "sectionType": "profile"}, {"title": "LANGUAGES", "sectionType": "languages"}, {"title": "SKILLS", "sectionType": "skills"}, {"title": "WORK EXPERIENCE", "sectionType": "work experience"}];
+
+
+const name = Info.name
+const lastName = Info.lastName
+const location = Info.location
+const github = Info.contactInfo.gitHub
+const linkedIn = Info.contactInfo.linkedIn
+const cellphone = Info.contactInfo.cellPhoneNumber
+const email = Info.contactInfo.email
+const desc = Info.profileDescription
+const languagesSpoken = Info.languages
+const skills = Info.skills
+const experience = Info.workExperience
+const educationDegrees = Info.education
+
+const sectionMock = ["PROFILE", 'WORK EXPERIENCE', 'LANGUAGES', 'EDUCATION'];
 
 export default function Home() {
+  let i = 0
+  return (
+    <>
+      <Header Name={name+' '+lastName} Location={location} github={github} linkedIn={linkedIn} email={email} cellphone={cellphone}></Header>
+      {
+      sectionMock.map(section => {
+        return <Section section={section}></Section>
+      })
+      }
+    </>
+  )
+}
+
+/* export default function Home() {
   let i = 0;
   const [sections, setSections] = useState(sectionMock);
 
@@ -34,5 +63,5 @@ export default function Home() {
       <AddButton clickFunction={addSection} />
     </>
   );
-}
+} */
 
